@@ -2,7 +2,7 @@
 
 # pas-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+Penalities and Appeals UI journey tests.
 
 ## Pre-requisites
 
