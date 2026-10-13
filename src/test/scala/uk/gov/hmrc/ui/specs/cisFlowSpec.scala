@@ -36,13 +36,13 @@ class cisFlowSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("SDLT Filing Frontend Declaration and Submission Questions") {
+  Feature("CIS Penalties and Appeals Flow") {
 
-    Scenario("cis penalities and appeals flow") {
+    Scenario("CIS Penalties and Appeals Flow") {
 
       Given("the user is logged in through the AuthWizard page")
       AuthWizard.login(HASDIRECT, Organisation, "Organisation", "HMRC-CHAR-ORG", "CHARID", "IT00071")
-      Then("the pas page page is shown")
+      Then("the LandingPage page is shown")
       LandingPage.verifyPageTitle(LandingPage.pageTitle)
 
     }
