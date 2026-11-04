@@ -23,5 +23,5 @@ object LandingPage extends BasePage {
   override def pageUrl: String = "cis-paye-penalties-and-appeals"
 
   override def pageTitle: String =
-    "cis-paye-penalties-and-appeals-frontend - cis-paye-penalties-and-appeals-frontend - GOV.UK"
+    "cis-paye-penalties-and-appeals-frontend - Penalties and Appeals - GOV.UK"
 }

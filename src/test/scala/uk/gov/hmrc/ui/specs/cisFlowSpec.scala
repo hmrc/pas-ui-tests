@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, LandingPage}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, LandingPage}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -45,6 +45,9 @@ class cisFlowSpec
       Then("the LandingPage page is shown")
       LandingPage.verifyPageTitle(LandingPage.pageTitle)
 
+      Then("the BeforeYouStart page is shown")
+      BeforeYouStart.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/before-you-start/1")
+      BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
     }
   }
 }
