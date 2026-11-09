@@ -53,8 +53,8 @@ object AuthWizard extends BasePage {
         Env.baseUrl.equals(
           "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http://localhost:61002/cis-paye-penalties-and-appeals"
         )
-      ) "http://localhost:61002/cis-paye-penalties-and-appeals"
-      else s"${Env.baseUrl}/cis-paye-penalties-and-appeals"
+      ) "http://localhost:61002/cis-paye-penalties-and-appeals/appealable-penalties"
+      else s"${Env.baseUrl}/cis-paye-penalties-and-appeals/appealable-penalties"
     Redirect
   }
 
@@ -63,12 +63,21 @@ object AuthWizard extends BasePage {
     enrolKey: String,
     enrolId: String,
     enrolVal: String,
+    enrolId2: String = "",
+    enrolVal2: String = "",
     authId: String = ""
   ): this.type = {
     driver.findElement(affinityGroup).sendKeys(affGrp)
     driver.findElement(enrolmentKey).sendKeys(enrolKey)
     driver.findElement(enrolmentId).sendKeys(enrolId)
     driver.findElement(enrolmentValue).sendKeys(enrolVal)
+
+    if (enrolId2.nonEmpty && enrolVal2.nonEmpty) {
+      driver.findElement(addPreset).click()
+      driver.findElement(enrolmentId2).sendKeys(enrolId2)
+      driver.findElement(enrolmentValue2).sendKeys(enrolVal2)
+    }
+
     if (authId.nonEmpty) {
       driver.findElement(credId).sendKeys(authId)
     }
@@ -83,11 +92,24 @@ object AuthWizard extends BasePage {
     enrolKey: String,
     enrolId: String,
     enrolVal: String,
+    enrolId2: String = "",
+    enrolVal2: String = "",
     authId: String = ""
   ): Unit = {
     AuthWizard.navigateToPage(url)
+
     sendKeys(redirectUrl, buildRedirectUrl(HASDIRECT, Organisation))
-    fillInputs(affGrp, enrolKey, enrolId, enrolVal, authId)
+
+    fillInputs(
+      affGrp,
+      enrolKey,
+      enrolId,
+      enrolVal,
+      enrolId2,
+      enrolVal2,
+      authId
+    )
+
     click(btnSubmit)
   }
 

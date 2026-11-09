@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object BeforeYouStart extends BasePage {
 
-  override def pageUrl: String = "cis-paye-penalties-and-appeals/before-you-start/1"
+  override def pageUrl: String = "cis-paye-penalties-and-appeals/before-you-start"
 
   override def pageTitle: String =
     "Before you start - Penalties and Appeals - GOV.UK"
