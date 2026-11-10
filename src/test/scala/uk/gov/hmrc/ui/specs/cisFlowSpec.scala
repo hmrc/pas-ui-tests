@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, LandingPage}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, LandingPage}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -41,12 +41,22 @@ class cisFlowSpec
     Scenario("CIS Penalties and Appeals Flow") {
 
       Given("the user is logged in through the AuthWizard page")
-      AuthWizard.login(HASDIRECT, Organisation, "Organisation", "HMRC-CHAR-ORG", "CHARID", "IT00071")
-      Then("the LandingPage page is shown")
-      LandingPage.verifyPageTitle(LandingPage.pageTitle)
+      AuthWizard.login(
+        HASDIRECT,
+        Organisation,
+        "Organisation",
+        "HMRC-CIS-ORG",
+        "TaxOfficeNumber",
+        "100",
+        "TaxOfficeReference",
+        "AB123"
+      )
+      Then("the CISAppealablePenalties page is shown")
+      CISAppealablePenalties.verifyPageTitle(CISAppealablePenalties.pageTitle)
 
+      When("the user selects a penalty id to begin appealing")
+      CISAppealablePenalties.clickPenaltyID()
       Then("the BeforeYouStart page is shown")
-      BeforeYouStart.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/before-you-start/1")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
     }
   }
