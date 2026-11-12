@@ -53,8 +53,8 @@ object AuthWizard extends BasePage {
         Env.baseUrl.equals(
           "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http://localhost:61002/cis-paye-penalties-and-appeals"
         )
-      ) "http://localhost:61002/cis-paye-penalties-and-appeals/appealable-penalties"
-      else s"${Env.baseUrl}/cis-paye-penalties-and-appeals/appealable-penalties"
+      ) "http://localhost:61002/cis-paye-penalties-and-appeals"
+      else s"${Env.baseUrl}/cis-paye-penalties-and-appeals"
     Redirect
   }
 
