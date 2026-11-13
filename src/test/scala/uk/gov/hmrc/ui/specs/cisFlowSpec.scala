@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, ExcuseEndDateKnown, LandingPage}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, ExcuseEndDateKnown, ReasonableExcuseEndDate}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -59,14 +59,20 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
-      Then("The user navigates to the 'Do you know your excuse end date' page")
+      Then("the ExcuseEndDate page is shown")
       // Remove next line when navigation is completed
       ExcuseEndDateKnown.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/excuse-end-date-known")
+      ExcuseEndDateKnown.verifyPageTitle(ExcuseEndDateKnown.pageTitle)
 
-      When("the user confirms when their reasonable excuse ended")
+      When("the user confirms they know when their reasonable excuse ended")
       ExcuseEndDateKnown.radioButton(ExcuseEndDateKnown.yes)
       ExcuseEndDateKnown.clickContinueButton()
+      Then("the ReasonableExcuseEndDate page is shown")
+      ReasonableExcuseEndDate.verifyPageTitle(ReasonableExcuseEndDate.pageTitle)
 
+      When("the user provides their reasonable excuse end date")
+      ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
+//      ReasonableExcuseEndDate.clickContinueButton()
     }
   }
 }
