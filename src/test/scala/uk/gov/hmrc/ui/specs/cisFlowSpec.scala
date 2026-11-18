@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, ExcuseEndDateKnown, ReasonableExcuseEndDate}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -59,12 +59,22 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
+      When("the user starts the appeal")
+      BeforeYouStart.clickStartTheAppealButton()
+      Then("the CISWhyYouAreAppealing page is shown")
+      CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
+
+      When("the user selects none of these as the reason for appealing")
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.hmrcOnlineServicesUnavailable)
+      CISWhyYouAreAppealing.clickContinueButton()
+      Then("the ReasonableExcuseEndDate page is shown")
+      ReasonableExcuseEndDate.verifyPageTitle(ReasonableExcuseEndDate.pageTitle)
+
+      When("the user provides their reasonable excuse end date")
+      ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
+      //      ReasonableExcuseEndDate.clickContinueButton()
+
       /*
-      When ("the user clicks on Start the appeal")
-      Then ("the user navigates to Why are you appealing this penality?")
-      When ("the user selects HMRC's online services were unavailable option and click Continue")
-      Then ("the user navigates to What did your reasonable excuse end?")
-      When ("the user enters the date and click continue")
       Then ("the user is navigated to Additional details page")
       When ("the user enters the reason and click Continue")
       Then ("the user navigates to Check your answers page")
@@ -94,15 +104,15 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
-      /*
-      When the user clicks on Start the appeal
-      Then the user navigates to Why are you appealing this penality?
-      When the user selects None of these option and click Continue
-       */
+      When("the user starts the appeal")
+      BeforeYouStart.clickStartTheAppealButton()
+      Then("the CISWhyYouAreAppealing page is shown")
+      CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
 
+      When("the user selects none of these as the reason for appealing")
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.noneOfThese)
+      CISWhyYouAreAppealing.clickContinueButton()
       Then("the user is navigated to Do you know when your reasonable excuse ended page")
-      // Remove next line when navigation is completed
-      ExcuseEndDateKnown.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/excuse-end-date-known")
       ExcuseEndDateKnown.verifyPageTitle(ExcuseEndDateKnown.pageTitle)
 
       When("the user confirms they know when their reasonable excuse ended")
@@ -115,6 +125,7 @@ class cisFlowSpec
       ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
       //      ReasonableExcuseEndDate.clickContinueButton()
       /*
+
       Then ("the user is navigated to Additional details page")
       When ("the user enters the reason and click Continue")
       Then ("the user navigates to Check your answers page")
@@ -144,10 +155,16 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
+      When("the user starts the appeal")
+      BeforeYouStart.clickStartTheAppealButton()
+      Then("the CISWhyYouAreAppealing page is shown")
+      CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
+
+      When("the user selects no longer as cis contractor as the reason for appealing")
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.noLongerCisContractor)
+//      CISWhyYouAreAppealing.clickContinueButton()
+
       /*
-        When ("the user clicks on Start the appeal")
-        Then ("the user navigates to Why are you appealing this penality?")
-        When ("the user selects I am no longer a CIS contractor option and click Continue")
         Then ("the user navigates to When did you stop being a CIS contractor?")
         When ("the user enters the date and click continue")
         Then ("the user is navigated to Additional details page")
@@ -179,10 +196,16 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
+      When("the user starts the appeal")
+      BeforeYouStart.clickStartTheAppealButton()
+      Then("the CISWhyYouAreAppealing page is shown")
+      CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
+
+      When("the user selects filed the return on time as the reason for appealing")
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.filedReturnOnTime)
+//      CISWhyYouAreAppealing.clickContinueButton()
+
       /*
-      When ("the user clicks on Start the appeal")
-      Then ("the user navigates to Why are you appealing this penality?")
-      When ("the user selects I filed the return on time option and click Continue")
       Then ("the user navigates to When did you file the return?")
       When ("the user enters the date and click continue")
       Then ("the user is navigated to Additional details page")
@@ -214,10 +237,16 @@ class cisFlowSpec
       Then("the BeforeYouStart page is shown")
       BeforeYouStart.verifyPageTitle(BeforeYouStart.pageTitle)
 
+      When("the user starts the appeal")
+      BeforeYouStart.clickStartTheAppealButton()
+      Then("the CISWhyYouAreAppealing page is shown")
+      CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
+
+      When("the user selects i am a deemed contractor as the reason for appealing")
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.deemedContractor)
+      //      CISWhyYouAreAppealing.clickContinueButton()
+
       /*
-      When ("the user clicks on Start the appeal")
-      Then ("the user navigates to Why are you appealing this penality?")
-      When ("the user selects I am a deemed contractor option and click Continue")
       Then ("the user navigates to Check your answers page")
       When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
