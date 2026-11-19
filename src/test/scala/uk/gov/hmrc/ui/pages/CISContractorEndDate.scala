@@ -24,7 +24,7 @@ object CISContractorEndDate extends BasePage {
   override def pageUrl: String = "cis-paye-penalties-and-appeals/cis-contractor-end-date"
 
   override def pageTitle: String =
-    "When did you stop being a CIS contractor? - Penalties and Appeals - GOV.UK"
+    "Your CIS registration - Penalties and Appeals - GOV.UK"
 
   val day: String = "value.day"
 
