@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -162,12 +162,15 @@ class cisFlowSpec
 
       When("the user selects no longer as cis contractor as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.noLongerCisContractor)
-//      CISWhyYouAreAppealing.clickContinueButton()
+      CISWhyYouAreAppealing.clickContinueButton()
 
-      /*
-        Then ("the user navigates to When did you stop being a CIS contractor?")
-        When ("the user enters the date and click continue")
-        Then ("the user is navigated to Additional details page")
+      Then("the user navigates to When did you stop being a CIS contractor?")
+      CISContractorEndDate.verifyPageTitle(CISContractorEndDate.pageTitle)
+      When("the user enters the date and click continue")
+      CISContractorEndDate.enterCISContractorEndDate()
+//      CISContractorEndDate.clickContinueButton()
+
+      /* Then ("the user is navigated to Additional details page")
         When ("the user enters the reason and click Continue")
         Then ("the user navigates to Check your answers page")
         When ("the user accepts and send on CYA")
