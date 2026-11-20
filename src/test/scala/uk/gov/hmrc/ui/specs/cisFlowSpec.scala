@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAdditionalDetails, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAdditionalDetails, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, FileTheReturnDate, ReasonableExcuseEndDate}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -228,12 +228,14 @@ class cisFlowSpec
 
       When("the user selects filed the return on time as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.filedReturnOnTime)
-//      CISWhyYouAreAppealing.clickContinueButton()
-//      Then("the user navigates to When did you file the return?")
+      CISWhyYouAreAppealing.clickContinueButton()
+      Then("the user navigates to When did you file the return?")
+      FileTheReturnDate.verifyPageTitle(FileTheReturnDate.pageTitle)
 
-//      When("the user enters the date and click continue")
+      When("the user enters the date and click continue")
+      FileTheReturnDate.enterFilingReturnDate()
+      FileTheReturnDate.clickContinueButton()
       Then("the CISAdditionalDetails page is shown")
-      CISAdditionalDetails.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/additional-details")
       CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
 
       When("the user provides more details about their reason for appealing")
