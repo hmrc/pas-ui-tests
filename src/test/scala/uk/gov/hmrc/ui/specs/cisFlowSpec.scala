@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAdditionalDetails, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, ReasonableExcuseEndDate}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -72,11 +72,18 @@ class cisFlowSpec
 
       When("the user provides their reasonable excuse end date")
       ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
-      //      ReasonableExcuseEndDate.clickContinueButton()
+      ReasonableExcuseEndDate.clickContinueButton()
+      Then("the CISAdditionalDetails page is shown")
+      CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
+
+      When("the user provides more details about their reason for appealing")
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInput
+      )
+//      CISAdditionalDetails.clickContinueButton()
 
       /*
-      Then ("the user is navigated to Additional details page")
-      When ("the user enters the reason and click Continue")
       Then ("the user navigates to Check your answers page")
       When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
@@ -123,11 +130,18 @@ class cisFlowSpec
 
       When("the user provides their reasonable excuse end date")
       ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
-      //      ReasonableExcuseEndDate.clickContinueButton()
-      /*
+      ReasonableExcuseEndDate.clickContinueButton()
+      Then("the CISAdditionalDetails page is shown")
+      CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
 
-      Then ("the user is navigated to Additional details page")
-      When ("the user enters the reason and click Continue")
+      When("the user provides more details about their reason for appealing")
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInput
+      )
+      //      CISAdditionalDetails.clickContinueButton()
+
+      /*
       Then ("the user navigates to Check your answers page")
       When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
@@ -163,15 +177,23 @@ class cisFlowSpec
       When("the user selects no longer as cis contractor as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.noLongerCisContractor)
       CISWhyYouAreAppealing.clickContinueButton()
-
       Then("the user navigates to When did you stop being a CIS contractor?")
       CISContractorEndDate.verifyPageTitle(CISContractorEndDate.pageTitle)
+
       When("the user enters the date and click continue")
       CISContractorEndDate.enterCISContractorEndDate()
-//      CISContractorEndDate.clickContinueButton()
+      CISContractorEndDate.clickContinueButton()
+      Then("the CISAdditionalDetails page is shown")
+      CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
 
-      /* Then ("the user is navigated to Additional details page")
-        When ("the user enters the reason and click Continue")
+      When("the user provides more details about their reason for appealing")
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInput
+      )
+      //      CISAdditionalDetails.clickContinueButton()
+
+      /*
         Then ("the user navigates to Check your answers page")
         When ("the user accepts and send on CYA")
         Then ("the user is navigated to Appeal received")
@@ -207,12 +229,21 @@ class cisFlowSpec
       When("the user selects filed the return on time as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.filedReturnOnTime)
 //      CISWhyYouAreAppealing.clickContinueButton()
+//      Then("the user navigates to When did you file the return?")
+
+//      When("the user enters the date and click continue")
+      Then("the CISAdditionalDetails page is shown")
+      CISAdditionalDetails.navigateToPage("http://localhost:61002/cis-paye-penalties-and-appeals/additional-details")
+      CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
+
+      When("the user provides more details about their reason for appealing")
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInput
+      )
+      //      CISAdditionalDetails.clickContinueButton()
 
       /*
-      Then ("the user navigates to When did you file the return?")
-      When ("the user enters the date and click continue")
-      Then ("the user is navigated to Additional details page")
-      When ("the user enters the reason and click Continue")
       Then ("the user navigates to Check your answers page")
       When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
