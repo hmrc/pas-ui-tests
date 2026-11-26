@@ -41,6 +41,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   object Locators {
     val btnContinue           = "//*[contains(@class,'govuk-button') and normalize-space()='Continue']"
     val btnStartTheAppeal     = "//*[contains(@class,'govuk-button') and normalize-space()='Start the appeal']"
+    val btnAcceptAndSend      = "//*[contains(@class,'govuk-button') and normalize-space()='Accept and send']"
     val btnSaveAndContinue    = "//*[contains(@class,'govuk-button') and normalize-space()='Save and continue']"
     val btnConfirmAndContinue = "//*[contains(@class,'govuk-button') and normalize-space()='Confirm and continue']"
     val btnConfirmAndSubmit   = "//*[contains(@class,'govuk-button') and normalize-space()='Confirm and submit']"
@@ -115,6 +116,8 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def clickSubmitButton(): Unit = click(By.cssSelector(Locators.btnSubmit))
 
   def clickStartTheAppealButton(): Unit = click(By.xpath(Locators.btnStartTheAppeal))
+
+  def clickAcceptAndSend(): Unit = click(By.xpath(Locators.btnAcceptAndSend))
 
   def clickContinueButton(): Unit = click(By.xpath(Locators.btnContinue))
 
