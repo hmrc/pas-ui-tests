@@ -20,7 +20,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAdditionalDetails, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, FileTheReturnDate, ReasonableExcuseEndDate}
+import uk.gov.hmrc.ui.pages.{AuthWizard, BeforeYouStart, CISAdditionalDetails, CISAppealablePenalties, CISContractorEndDate, CISWhyYouAreAppealing, ExcuseEndDateKnown, FileTheReturnDate, ReasonableExcuseEndDate, SendYourAppeal}
 import uk.gov.hmrc.ui.util.Users.LoginTypes.HASDIRECT
 import uk.gov.hmrc.ui.util.Users.UserTypes.Organisation
 import org.openqa.selenium.By
@@ -81,11 +81,15 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-//      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
+
       Then ("the user is navigated to Appeal received")
        */
     }
@@ -139,11 +143,13 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-      //      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
        */
     }
@@ -191,11 +197,13 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-      //      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-        Then ("the user navigates to Check your answers page")
-        When ("the user accepts and send on CYA")
         Then ("the user is navigated to Appeal received")
        */
     }
@@ -243,12 +251,15 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-      //      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
+
        */
     }
 
@@ -280,11 +291,14 @@ class cisFlowSpec
 
       When("the user selects i am a deemed contractor as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.deemedContractor)
-      //      CISWhyYouAreAppealing.clickContinueButton()
+      CISWhyYouAreAppealing.clickContinueButton()
+
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
        */
     }
