@@ -81,11 +81,15 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-//      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
+
       Then ("the user is navigated to Appeal received")
        */
     }
@@ -139,11 +143,13 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-      //      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-      Then ("the user navigates to Check your answers page")
-      When ("the user accepts and send on CYA")
       Then ("the user is navigated to Appeal received")
        */
     }
@@ -191,11 +197,13 @@ class cisFlowSpec
         By.id(CISAdditionalDetails.reasonForAppeal),
         CISAdditionalDetails.reasonForAppealInput
       )
-      //      CISAdditionalDetails.clickContinueButton()
+      CISAdditionalDetails.clickContinueButton()
+      Then("the user navigates to Check your answers page")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+      When("the user accepts and send on CYA")
+      SendYourAppeal.clickAcceptAndSend()
 
       /*
-        Then ("the user navigates to Check your answers page")
-        When ("the user accepts and send on CYA")
         Then ("the user is navigated to Appeal received")
        */
     }
