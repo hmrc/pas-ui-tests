@@ -34,9 +34,15 @@ object CISContractorEndDate extends BasePage {
 
   val dayInput: String = "10"
 
+  val dayInputCYA: String = "21"
+
   val monthInput: String = "02"
 
+  val monthInputCYA: String = "07"
+
   val yearInput: String = "2026"
+
+  val yearInputCYA: String = "2022"
 
   def enterCISContractorEndDate(): Unit = inputDateMonthAndYear(
     By.id(day),
@@ -45,5 +51,14 @@ object CISContractorEndDate extends BasePage {
     dayInput,
     monthInput,
     yearInput
+  )
+
+  def enterCISContractorEndDateCYA(): Unit = inputDateMonthAndYear(
+    By.id(day),
+    By.id(month),
+    By.id(year),
+    dayInputCYA,
+    monthInputCYA,
+    yearInputCYA
   )
 }

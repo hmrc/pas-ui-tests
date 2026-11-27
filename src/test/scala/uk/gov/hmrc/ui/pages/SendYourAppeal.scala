@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object SendYourAppeal extends BasePage {
@@ -24,4 +25,28 @@ object SendYourAppeal extends BasePage {
 
   override def pageTitle: String =
     "Send your appeal - Penalties and Appeals - GOV.UK"
+
+  val reasonForAppeal = "a[href = '/cis-paye-penalties-and-appeals/why-you-are-appealing/change']"
+
+  val excuseEndDateKnown = "a[href = '/cis-paye-penalties-and-appeals/excuse-end-date-known/change']"
+
+  val reasonableExcuseEndDate = "a[href = '/cis-paye-penalties-and-appeals/reasonable-excuse-end-date/change']"
+
+  val cisContractorEndDate = "a[href = '/cis-paye-penalties-and-appeals/cis-contractor-end-date/change']"
+
+  val whenDidYouFileTheReturn = "a[href = '/cis-paye-penalties-and-appeals/when-did-you-file-the-return/change']"
+
+  val cisAdditionalDetails = "a[href = '/cis-paye-penalties-and-appeals/additional-details/change']"
+
+  def clickReasonForAppeal(): Unit = click(By.cssSelector(reasonForAppeal))
+
+  def clickExcuseEndDateKnown(): Unit = click(By.cssSelector(excuseEndDateKnown))
+
+  def clickReasonableExcuseEndDate(): Unit = click(By.cssSelector(reasonableExcuseEndDate))
+
+  def clickCISContractorEndDate(): Unit = click(By.cssSelector(cisContractorEndDate))
+
+  def clickWhenDidYouFileTheReturn(): Unit = click(By.cssSelector(whenDidYouFileTheReturn))
+
+  def clickCISAdditionalDetails(): Unit = click(By.cssSelector(cisAdditionalDetails))
 }

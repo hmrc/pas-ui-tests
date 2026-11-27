@@ -29,4 +29,6 @@ object CISAdditionalDetails extends BasePage {
   val reasonForAppeal: String = "value"
 
   val reasonForAppealInput: String = "Reason for appeal"
+
+  val reasonForAppealInputCYA: String = "Reason for appeal updated for cya"
 }

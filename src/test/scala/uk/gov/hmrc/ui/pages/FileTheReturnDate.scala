@@ -30,13 +30,19 @@ object FileTheReturnDate extends BasePage {
 
   val dayInput: String = "28"
 
+  val dayInputCYA: String = "14"
+
   val month: String = "value.month"
 
   val monthInput: String = "10"
 
+  val monthInputCYA: String = "05"
+
   val year: String = "value.year"
 
   val yearInput: String = "2026"
+
+  val yearInputCYA: String = "2014"
 
   def enterFilingReturnDate(): Unit = inputDateMonthAndYear(
     By.id(day),
@@ -45,5 +51,14 @@ object FileTheReturnDate extends BasePage {
     dayInput,
     monthInput,
     yearInput
+  )
+
+  def enterFilingReturnDateCYA(): Unit = inputDateMonthAndYear(
+    By.id(day),
+    By.id(month),
+    By.id(year),
+    dayInputCYA,
+    monthInputCYA,
+    yearInputCYA
   )
 }

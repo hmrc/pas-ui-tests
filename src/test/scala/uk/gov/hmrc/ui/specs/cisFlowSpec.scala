@@ -64,7 +64,7 @@ class cisFlowSpec
       Then("the CISWhyYouAreAppealing page is shown")
       CISWhyYouAreAppealing.verifyPageTitle(CISWhyYouAreAppealing.pageTitle)
 
-      When("the user selects none of these as the reason for appealing")
+      When("the user selects hmrc's online services are unavailable as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.hmrcOnlineServicesUnavailable)
       CISWhyYouAreAppealing.clickContinueButton()
       Then("the ReasonableExcuseEndDate page is shown")
@@ -82,10 +82,32 @@ class cisFlowSpec
         CISAdditionalDetails.reasonForAppealInput
       )
       CISAdditionalDetails.clickContinueButton()
-
-      Then("the user navigates to Check your answers page")
+      Then("the SendYourAppeal page is shown")
       SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
-      When("the user accepts and send on CYA")
+
+      When("the user updates their reason for appeal")
+      SendYourAppeal.clickReasonForAppeal()
+      CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.issuesWithComputerOrSoftware)
+      CISWhyYouAreAppealing.clickContinueButton()
+      Then("the ReasonableExcuseEndDate page is shown")
+      ReasonableExcuseEndDate.verifyPageTitle(ReasonableExcuseEndDate.pageTitle)
+
+      When("the user provides their reasonable excuse end date")
+      ReasonableExcuseEndDate.enterReasonableExcuseEndDate()
+      ReasonableExcuseEndDate.clickContinueButton()
+      Then("the CISAdditionalDetails page is shown")
+      CISAdditionalDetails.verifyPageTitle(CISAdditionalDetails.pageTitle)
+
+      When("the user provides more details about their reason for appealing")
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInput
+      )
+      CISAdditionalDetails.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user accepts and sends their appeal")
       SendYourAppeal.clickAcceptAndSend()
 
       /*
@@ -144,9 +166,34 @@ class cisFlowSpec
         CISAdditionalDetails.reasonForAppealInput
       )
       CISAdditionalDetails.clickContinueButton()
-      Then("the user navigates to Check your answers page")
+      Then("the SendYourAppeal page is shown")
       SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
-      When("the user accepts and send on CYA")
+
+      When("the user updates their reasonable excuse end date")
+      SendYourAppeal.clickReasonableExcuseEndDate()
+      ReasonableExcuseEndDate.enterReasonableExcuseEndDateCYA()
+      ReasonableExcuseEndDate.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user updates they don't know when their reasonable excuse ended")
+      SendYourAppeal.clickExcuseEndDateKnown()
+      ExcuseEndDateKnown.radioButton(ExcuseEndDateKnown.no)
+      ExcuseEndDateKnown.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user updates their details about their reason for appealing")
+      SendYourAppeal.clickCISAdditionalDetails()
+      CISAdditionalDetails.input(
+        By.id(CISAdditionalDetails.reasonForAppeal),
+        CISAdditionalDetails.reasonForAppealInputCYA
+      )
+      CISAdditionalDetails.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user accepts and sends their appeal")
       SendYourAppeal.clickAcceptAndSend()
 
       /*
@@ -198,9 +245,17 @@ class cisFlowSpec
         CISAdditionalDetails.reasonForAppealInput
       )
       CISAdditionalDetails.clickContinueButton()
-      Then("the user navigates to Check your answers page")
+      Then("the SendYourAppeal page is shown")
       SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
-      When("the user accepts and send on CYA")
+
+      When("the user updates their cis contractor end date")
+      SendYourAppeal.clickCISContractorEndDate()
+      CISContractorEndDate.enterCISContractorEndDateCYA()
+      CISContractorEndDate.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user accepts and sends their appeal")
       SendYourAppeal.clickAcceptAndSend()
 
       /*
@@ -252,9 +307,17 @@ class cisFlowSpec
         CISAdditionalDetails.reasonForAppealInput
       )
       CISAdditionalDetails.clickContinueButton()
-      Then("the user navigates to Check your answers page")
+      Then("the SendYourAppeal page is shown")
       SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
-      When("the user accepts and send on CYA")
+
+      When("the user updates the date they filed the return")
+      SendYourAppeal.clickWhenDidYouFileTheReturn()
+      FileTheReturnDate.enterFilingReturnDateCYA()
+      FileTheReturnDate.clickContinueButton()
+      Then("the SendYourAppeal page is shown")
+      SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
+
+      When("the user accepts and sends their appeal")
       SendYourAppeal.clickAcceptAndSend()
 
       /*
@@ -292,10 +355,10 @@ class cisFlowSpec
       When("the user selects i am a deemed contractor as the reason for appealing")
       CISWhyYouAreAppealing.radioButton(CISWhyYouAreAppealing.deemedContractor)
       CISWhyYouAreAppealing.clickContinueButton()
-
-      Then("the user navigates to Check your answers page")
+      Then("the SendYourAppeal page is shown")
       SendYourAppeal.verifyPageTitle(SendYourAppeal.pageTitle)
-      When("the user accepts and send on CYA")
+
+      When("the user accepts and sends their appeal")
       SendYourAppeal.clickAcceptAndSend()
 
       /*
