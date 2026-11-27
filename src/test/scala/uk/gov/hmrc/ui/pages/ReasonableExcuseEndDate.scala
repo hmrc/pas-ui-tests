@@ -30,13 +30,19 @@ object ReasonableExcuseEndDate extends BasePage {
 
   val dayInput: String = "28"
 
+  val dayInputCYA: String = "17"
+
   val month: String = "value.month"
 
   val monthInput: String = "10"
 
+  val monthInputCYA: String = "03"
+
   val year: String = "value.year"
 
   val yearInput: String = "2026"
+
+  val yearInputCYA: String = "2018"
 
   def enterReasonableExcuseEndDate(): Unit = inputDateMonthAndYear(
     By.id(day),
@@ -45,5 +51,14 @@ object ReasonableExcuseEndDate extends BasePage {
     dayInput,
     monthInput,
     yearInput
+  )
+
+  def enterReasonableExcuseEndDateCYA(): Unit = inputDateMonthAndYear(
+    By.id(day),
+    By.id(month),
+    By.id(year),
+    dayInputCYA,
+    monthInputCYA,
+    yearInputCYA
   )
 }
